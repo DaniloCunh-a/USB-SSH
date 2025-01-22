@@ -1,0 +1,87 @@
+ software =
+ {
+         version = "0.1.0";
+         hardware-compatibility = [ "1.0" ];
+         stable:
+         {
+                 main:
+                 {
+                         images: (
+                         {
+                                 filename = "diebold-image-base-@@MACHINE@@.ext4";
+                                 device = "/dev/mmcblk1p7";
+                         }
+                         );
+
+                         scripts: ({
+                          filename = "productsetup.lua";
+                          type = "lua";
+                        });
+
+                        
+                        files: (
+                                {
+                                        filename = "extlinux.conf";
+                                        path = "/mmc1_extlinux/extlinux.conf";
+                                        device = "/dev/mmcblk1p6";
+                                        filesystem = "ext4";
+                                        atomic-install = true;
+                                },
+                                {
+                                        filename = "uImage";
+                                        path = "/";
+                                        device = "/dev/mmcblk1p6";
+                                        filesystem = "ext4";
+                                        atomic-install = true;
+                                },
+                                {
+                                        filename = "stm32mp157f-dn-som.dtb";
+                                        path = "/";
+                                        device = "/dev/mmcblk1p6";
+                                        filesystem = "ext4";
+                                        atomic-install = true;
+                                }
+                        );
+                 };
+                 alt:
+                 {
+                         images: (
+                         {
+                                 filename = "diebold-image-tpd-@@MACHINE@@.ext4";
+                                 device = "/dev/mmcblk1p8";
+                         }
+                         );
+
+                         scripts: ({
+                                 filename = "productsetup.lua";
+                                 type = "lua";
+                         });
+                         
+                        files: (
+                                
+                                {
+                                        filename = "stm32mp157f-dn-som-tpd.dtb";
+                                        path = "/stm32mp157f-dn-som-tpd.dtb";
+                                        device = "/dev/mmcblk1p6";
+                                        filesystem = "ext4";
+                                        atomic-install = true;
+                                },
+                                {
+                                        filename = "uImage-tpd";
+                                        path = "/uImage-tpd";
+                                        device = "/dev/mmcblk1p6";
+                                        filesystem = "ext4";
+                                        atomic-install = true;
+                                },
+                                {
+                                        filename = "extlinux.conf";
+                                        path = "/mmc1_extlinux/extlinux.conf";
+                                        device = "/dev/mmcblk1p6";
+                                        filesystem = "ext4";
+                                        atomic-install = true;
+                                }
+                        );
+                 };
+                 
+         };
+ }
